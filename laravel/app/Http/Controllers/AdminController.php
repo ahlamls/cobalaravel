@@ -86,13 +86,48 @@ class AdminController extends Controller
         return redirect('/admin/login');
     }
 
+    public function list(Request $request) {
+        $uid = $this->checkLogin($request);
+        $articles = DB::select("SELECT * FROM `articles`");
+      
+        return view('adminlist',["articles" => $articles]);   
+    }
+
+    public function edit(Request $request,$id) {
+        $uid = $this->checkLogin($request);
+        $articles = DB::select("SELECT * FROM `articles` WHERE `id` = $id LIMIT 0,1");
+      
+        return view('adminedit',["articles" => $articles]);   
+    }
+
+    public function delete(Request $request,$id) {
+        $uid = $this->checkLogin($request);
+        $articles = DB::select("SELECT * FROM `articles` WHERE `id` = $id LIMIT 0,1");
+      
+        return view('admindelete',["articles" => $articles]);   
+    }
+
+    public function handleedit(Request $request) {
+        $uid = $this->checkLogin($request);
+        $id = $request->input("id");
+        $title = $request->input('title');
+        $content = $request->input('content');
+        DB::update("UPDATE `articles` SET `title` = '$title' , `content` = '$content' WHERE `articles`.`id` = $id;");
+        return redirect('/admin/list');
+    }
+
+    public function handledelete(Request $request,$id) {
+        $uid = $this->checkLogin($request);
+        DB::delete("DELETE FROM `articles` WHERE `articles`.`id` = $id");
+        return redirect('/admin/list');
+    }
+
 
     public function insert(Request $request) {
         $uid = $this->checkLogin($request);
         $title = $request->input('title');
         $content = $request->input('content');
         DB::insert("INSERT INTO `articles` (`id`, `user_id`, `title`, `content`, `time`) VALUES (NULL, '$uid', '$title', '$content' , NOW())");
-        echo "Record inserted successfully.<br/>";
-        echo '<a href = "/admin">Click Here</a> to go back.';
+        return redirect('/admin/list');
      }
 }

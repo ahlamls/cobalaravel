@@ -24,7 +24,10 @@
           <a class="nav-link " aria-current="page" href="/admin">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/admin/post">New Article</a>
+          <a class="nav-link" href="/admin/list">Article List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">View Site</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/admin/logout">Logout</a>
@@ -51,7 +54,5 @@
     </div>
   </div>
 </nav>
-
-
   <div class="container">
   <br>
