@@ -18,5 +18,10 @@ use App\Http\Controllers\AdminController;
 Route::get('/', [HomeController::class , 'index']);
 Route::get('/admin', [AdminController::class , 'index']);
 Route::get('/admin/post', [AdminController::class , 'post']);
+Route::get('/admin/login', [AdminController::class , 'login']);
+Route::get('/admin/logout', [AdminController::class , 'logout']);
+Route::post('/admin/handlelogin', [AdminController::class , 'handlelogin']);
 Route::post('/admin/create', [AdminController::class , 'insert']);
 Route::get('/post/{id}', [HomeController::class, 'show']);
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

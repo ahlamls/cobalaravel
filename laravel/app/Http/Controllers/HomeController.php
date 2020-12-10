@@ -11,11 +11,15 @@ class HomeController extends Controller
 {
     public function index(){
         $articles = DB::select('select * from articles ORDER BY `id` DESC');
-        return view('welcome',['articles'=>$articles]);    
+        $users = DB::select("select * from user ");
+    
+        return view('welcome',['articles'=>$articles , 'users' => $users]);      
     }
 
     public function show($id) {
         $articles = DB::select("select * from articles WHERE `id` = $id");
-        return view('post',['articles'=>$articles]);   
+        $users = DB::select("select * from user ");
+    
+        return view('post',['articles'=>$articles , 'users' => $users]);   
     }
 }
