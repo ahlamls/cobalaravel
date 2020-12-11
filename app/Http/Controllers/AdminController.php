@@ -140,7 +140,7 @@ class AdminController extends Controller
            if ($extension == "png" OR $extension == "jpg" OR $extension =="jpeg" OR $extension = "gif") {
             $filename = base64_encode($file->getClientOriginalName()) . "." . $extension;
             $file->move("thumb",$filename);
-            $image_url = "'/public/thumb/" . $filename . "'";
+            $image_url = "'/thumb/" . $filename . "'";
            } else {
                $image_url == "NULL";
            }
